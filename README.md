@@ -61,7 +61,7 @@ no postman, importe o arquivo api.postman_collection.json com todas as api
     dados no banco:
     -  todas as raças de gatos disponíveis com 3 images se disponivel
     -  3 imagens de gatos com chapéu
-    -  3 imagens de gatos com  3 imagens de gatos com chapéu
+    -  3 imagens de gatos com óculos
 ## API
 
 Documentação da api pelo postman em api.postman_collection.json
