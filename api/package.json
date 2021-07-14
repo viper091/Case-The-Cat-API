@@ -1,0 +1,27 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "nodemon ./src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@elastic/ecs-winston-format": "^1.1.0",
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "express-prom-bundle": "^6.3.6",
+    "express-prometheus-middleware": "^1.2.0",
+    "mongodb": "^4.0.0",
+    "morgan": "^1.10.0",
+    "prom-client": "^13.1.0",
+    "winston": "^3.3.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.12"
+  }
+}

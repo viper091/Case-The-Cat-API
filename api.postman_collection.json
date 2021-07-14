@@ -1,0 +1,157 @@
+{
+	"info": {
+		"_postman_id": "a211d198-babe-4e71-aa63-8c3c0ea37548",
+		"name": "api",
+		"description": "# Intro\n\nApi capaz de listar e pesquisar sobre gatos",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get Cats",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"check return\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.length).to.eql(67);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/cats",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"cats"
+					]
+				},
+				"description": "# Intro\n\nlistar todas as raças de gatos contendo no minimo 3 imagens, descrição,nome e temperamento\n\n# Possiveis erros \n- internal error\n\n\n# Exemplo\n\n```json\n[\n   {\n        \"name\": \"American Bobtail\",\n        \"desc\": \"American Bobtails are loving and incredibly intelligent cats possessing a distinctive wild appearance. They are extremely interactive cats that bond with their human family with great devotion.\",\n        \"origin\": \"United States\",\n        \"imgs\": [\n            \"https://cdn2.thecatapi.com/images/d55E_KMKZ.jpg\",\n            \"https://cdn2.thecatapi.com/images/gVrhv_yAY.jpg\",\n            \"https://cdn2.thecatapi.com/images/vH0bd0YDH.jpg\"\n        ],\n        \"temperament\": \"Intelligent, Interactive, Lively, Playful, Sensitive\"\n   }\n]\n```"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Cats by Breed",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/cats/breed?id=Abyssinian",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"cats",
+						"breed"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "Abyssinian"
+						}
+					]
+				},
+				"description": "# Intro\n\nRetorna informação de uma raça \n\n# Parametros\n\n- {id}\n- string ( min: 4)\n- obrigatorio\n\n# Possiveis erros\n- internal error\n- invalid\n\n# Retorno\n\n## GET cats/breed?id=Abyssinian\n```json\n[\n    {\n        \"_id\": \"60eed2f656ecdd653e46d671\",\n        \"name\": \"Abyssinian\",\n        \"desc\": \"The Abyssinian is easy to care for, and a joy to have in your home. They’re affectionate cats and love both people and other animals.\",\n        \"origin\": \"Egypt\",\n        \"imgs\": [\n            \"https://cdn2.thecatapi.com/images/itfFA4NWS.jpg\",\n            \"https://cdn2.thecatapi.com/images/0XYvRd7oD.jpg\",\n            \"https://cdn2.thecatapi.com/images/9x1zk_Qdr.jpg\"\n        ],\n        \"temperament\": \"Active, Energetic, Independent, Intelligent, Gentle\"\n    }\n]\n```"
+			},
+			"response": []
+		},
+		{
+			"name": "Get cats by temperament",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/cats/temperament?temp=Affectionate,Intelligent,Playful,Social",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"cats",
+						"temperament"
+					],
+					"query": [
+						{
+							"key": "temp",
+							"value": "Affectionate,Intelligent,Playful,Social"
+						}
+					]
+				},
+				"description": "# Intro\n\nRetorna informação de uma raça a partir de um ou mais temperamentos\n\n\n# Possiveis erros\n- internal error\n- invalid\n# Parametros\n- {temp}\n- separar por virgula\n- obrigatorio\n\n# Exemplo Retorno\n\n## GET cats/temperament?temp=Affectionate,Intelligent,Playful,Social\n\n```json\n[\n    {\n        \"_id\": \"60eed2f656ecdd653e46d685\",\n        \"name\": \"Chausie\",\n        \"desc\": \"For those owners who desire a feline capable of evoking the great outdoors, the strikingly beautiful Chausie retains a bit of the wild in its appearance but has the house manners of our friendly, familiar moggies. Very playful, this cat needs a large amount of space to be able to fully embrace its hunting instincts.\",\n        \"origin\": \"Egypt\",\n        \"imgs\": [\n            \"https://cdn2.thecatapi.com/images/r0s90j0I8.jpg\",\n            \"https://cdn2.thecatapi.com/images/ZaZwqFsgj.jpg\",\n            \"https://cdn2.thecatapi.com/images/zly78vxmW.jpg\"\n        ],\n        \"temperament\": \"Affectionate, Intelligent, Playful, Social\"\n    },\n    {\n        \"_id\": \"60eed2f656ecdd653e46d687\",\n        \"name\": \"Colorpoint Shorthair\",\n        \"desc\": \"Colorpoint Shorthairs are an affectionate breed, devoted and loyal to their people. Sensitive to their owner’s moods, Colorpoints are more than happy to sit at your side or on your lap and purr words of encouragement on a bad day. They will constantly seek out your lap whenever it is open and in the moments when your lap is preoccupied they will stretch out in sunny spots on the ground.\",\n        \"origin\": \"United States\",\n        \"imgs\": [\n            \"https://cdn2.thecatapi.com/images/aAf-WmnRl.jpg\",\n            \"https://cdn2.thecatapi.com/images/1nOZPY4uI.jpg\",\n            \"https://cdn2.thecatapi.com/images/BDMOZo668.jpg\"\n        ],\n        \"temperament\": \"Affectionate, Intelligent, Playful, Social\"\n    }\n]\n```"
+			},
+			"response": []
+		},
+		{
+			"name": "Get cats by Origin",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/cats/origin?country=United-States",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"cats",
+						"origin"
+					],
+					"query": [
+						{
+							"key": "country",
+							"value": "United-States"
+						}
+					]
+				},
+				"description": "# Intro\n\nRetorna as informações de uma raça a partir de uma origem\n\n# Parametros\n- {country}\n- utilizar '-' como espaco\n- string ( min: 4)\n- obrigatorio\n\n# Possiveis erros\n- internal error\n- invald\n\n# Exemplo Retorno\n\n## GET cats/origin?country=United-States\n```json\n[\n    \n    {\n        \"_id\": \"60eed2f656ecdd653e46d673\",\n        \"name\": \"American Bobtail\",\n        \"desc\": \"American Bobtails are loving and incredibly intelligent cats possessing a distinctive wild appearance. They are extremely interactive cats that bond with their human family with great devotion.\",\n        \"origin\": \"United States\",\n        \"imgs\": [\n            \"https://cdn2.thecatapi.com/images/d55E_KMKZ.jpg\",\n            \"https://cdn2.thecatapi.com/images/gVrhv_yAY.jpg\",\n            \"https://cdn2.thecatapi.com/images/vH0bd0YDH.jpg\"\n        ],\n        \"temperament\": \"Intelligent, Interactive, Lively, Playful, Sensitive\"\n    }\n]\n```"
+			},
+			"response": []
+		},
+		{
+			"name": "Test latency",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/latencia",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"latencia"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test error",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/error",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"error"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

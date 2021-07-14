@@ -1,0 +1,15 @@
+global:
+  external_labels:
+    datacenter: api
+  scrape_interval: 30s
+  scrape_timeout: 20s
+  evaluation_interval: 60s
+scrape_configs:
+  # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
+  - job_name: 'api'
+
+    # Override the global default and scrape targets from this job every 5 seconds.
+    scrape_interval: 5s
+
+    static_configs:
+      - targets: ['localhost:8080']
